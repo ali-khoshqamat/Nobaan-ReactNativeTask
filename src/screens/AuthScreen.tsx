@@ -1,26 +1,84 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import LoginScreen from "./LoginScreen";
+import RegisterScreen from "./RegisterScreen";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { StyleSheet, View } from "react-native";
+import { useDispatch } from "react-redux";
 
-const AuthScreen = () => {
+interface AuthScreenProps {
+  navigation: NavigationProp<any>;
+}
+
+const Tab = createBottomTabNavigator();
+
+const AuthScreen: React.FC<AuthScreenProps> = ({ navigation }) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>This is Auth Screen!</Text>
-    </View>
+    <Tab.Navigator>
+      <Tab.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Register"
+        component={RegisterScreen}
+        options={{ headerShown: false }}
+      />
+    </Tab.Navigator>
   );
 };
 
 export default AuthScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#000",
-  },
-});
+// const AuthScreen = () => {
+//   const dispatch = useDispatch();
+//   const navigation = useNavigation();
+
+//   const handleRegisterSuccess = () => {
+//     // Handle successful registration here
+//     navigation.navigate("HomeScreen");
+//   };
+
+//   const handleLogin = () => {
+//     // Handle login submission here
+//     // Dispatch action to Redux for login
+//     // Navigate to home screen on successful login
+//     navigation.navigate("HomeScreen");
+//   };
+
+//   return (
+//     <View>
+//       <Login onLogin={handleLogin} />
+//       <Register onSuccess={handleRegisterSuccess} />
+//     </View>
+//   );
+// };
+
+// export default AuthScreen;
+
+// const AuthScreen: React.FC<AuthScreenProps> = ({ navigation }) => {
+//   const [isLogin, setIsLogin] = useState(true);
+
+//   const handleLogin = () => {
+//     // Handle login logic
+//     navigation.navigate('Home');
+//   };
+
+//   const handleRegister = () => {
+//     // Handle register logic
+//     navigation.navigate('Home');
+//   };
+
+//   return (
+//     <View style={styles.container}>
+//       {isLogin ? (
+//         <Login onLogin={handleLogin} toggleForm={() => setIsLogin(false)} />
+//       ) : (
+//         <Register onRegister={handleRegister} toggleForm={() => setIsLogin(true)} />
+//       )}
+//     </View>
+//   );
+// };
+
+// export default AuthScreen;
