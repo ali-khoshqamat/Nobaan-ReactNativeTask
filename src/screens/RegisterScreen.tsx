@@ -42,7 +42,7 @@ const RegisterScreen: React.FC = () => {
     setConfirmPassword("");
     setFullName("");
     // onRegisterSuccess();
-    navigation.navigate("Home");
+    navigation.navigate("HomeScreen");
   };
 
   return (

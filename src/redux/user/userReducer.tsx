@@ -9,6 +9,7 @@ const initialState: UserState = {
   email: "",
   password: "",
   fullName: "",
+  profileImage: "",
   isLoading: false,
 };
 

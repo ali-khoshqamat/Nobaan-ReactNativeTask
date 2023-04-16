@@ -9,18 +9,24 @@ import {
 } from "react-native";
 import { useDispatch } from "react-redux";
 import { registerSuccess } from "../redux/user/userActions";
+import { useSelector } from "react-redux";
 // import { login } from "../redux/user/userActions";
 
 const LoginScreen = () => {
   const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigation = useNavigation();
 
   const loginHandler = () => {
     // dispatch(login(email, password));
-    dispatch(registerSuccess({ email, password }));
-    navigation.navigate("Home");
+    // dispatch(registerSuccess({ email, password }));
+    if (user.email !== email && user.password !== password) {
+      alert('Incorect Information!');
+      return;
+    }
+    navigation.navigate('HomeScreen');
   };
 
   return (

@@ -6,6 +6,7 @@ export interface UserState {
   password: string;
   fullName: string;
   isLoading: boolean;
+  profileImage: string;
   error?: string;
 }
 
